@@ -13,6 +13,15 @@ router.get('/post', async (req,res) => {
     }
 });
 
+router.get('/post/:id', async (req,res) => {
+    try {
+        const data = await Post.findById(req.params.id);
+        res.json(data);
+    } catch( err) {
+        res.json({message: err});
+    }
+});
+
 router.post('/post', async (req, res) => {
     console.log(req.body);
     const emp = new Post({
@@ -29,5 +38,7 @@ router.post('/post', async (req, res) => {
     }
 
 });
+
+
 
 module.exports = router;
